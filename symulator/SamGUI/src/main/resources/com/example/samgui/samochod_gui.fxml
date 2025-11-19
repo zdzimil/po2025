@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="pl.edu.uj.controller.SamochodController"
+            prefHeight="700.0" prefWidth="1000.0">
+
+    <!-- TOP SECTION - Menu i pasek narzędzi -->
+    <top>
+        <VBox>
+            <!-- Menu Bar -->
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="New"/>
+                    <MenuItem text="Open"/>
+                    <MenuItem text="Save"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exit"/>
+                </Menu>
+                <Menu text="Edit">
+                    <MenuItem text="Undo"/>
+                    <MenuItem text="Redo"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Cut"/>
+                    <MenuItem text="Copy"/>
+                    <MenuItem text="Paste"/>
+                </Menu>
+            </MenuBar>
+
+            <!-- Toolbar -->
+            <ToolBar>
+                <ComboBox fx:id="comboBoxSamochody" promptText="Wybierz samochód" prefWidth="200"/>
+                <Button text="Dodaj nowy" fx:id="btnDodajNowy"/>
+                <Button text="Usuń" fx:id="btnUsun"/>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <!-- LEFT SECTION - Panel kontrolny -->
+    <left>
+        <VBox spacing="10" prefWidth="300" style="-fx-padding: 10;">
+            
+            <!-- Podstawowe informacje o samochodzie -->
+            <TitledPane text="Informacje o samochodzie" expanded="true">
+                <VBox spacing="5" style="-fx-padding: 10;">
+                    <Label text="Model:"/>
+                    <TextField fx:id="txtModel" promptText="Wprowadź model"/>
+                    
+                    <Label text="Numer rejestracyjny:"/>
+                    <TextField fx:id="txtNumerRejestracyjny" promptText="Wprowadź numer"/>
+                    
+                    <Label text="Waga (kg):"/>
+                    <TextField fx:id="txtWaga" promptText="Wprowadź wagę"/>
+                    
+                    <Label text="Prędkość (km/h):"/>
+                    <TextField fx:id="txtPredkosc" promptText="Wprowadź prędkość"/>
+                    
+                    <HBox spacing="10" style="-fx-padding: 5 0 0 0;">
+                        <Button text="Włącz" fx:id="btnWlacz" prefWidth="100"/>
+                        <Button text="Wyłącz" fx:id="btnWylacz" prefWidth="100"/>
+                    </HBox>
+                </VBox>
+            </TitledPane>
+
+            <!-- Skrzynia biegów -->
+            <TitledPane text="Skrzynia biegów" expanded="true">
+                <VBox spacing="5" style="-fx-padding: 10;">
+                    <Label text="Aktualny bieg:"/>
+                    <TextField fx:id="txtBieg" promptText="Bieg" editable="false"/>
+                    
+                    <Label text="Wybierz bieg:"/>
+                    <ComboBox fx:id="comboBoxBiegi" promptText="Wybierz bieg" prefWidth="200"/>
+                    
+                    <HBox spacing="10" style="-fx-padding: 5 0 0 0;">
+                        <Button text="Zwiększ bieg" fx:id="btnZwiekszBieg" prefWidth="100"/>
+                        <Button text="Zmniejsz bieg" fx:id="btnZmniejszBieg" prefWidth="100"/>
+                    </HBox>
+                </VBox>
+            </TitledPane>
+
+            <!-- Silnik -->
+            <TitledPane text="Silnik" expanded="true">
+                <VBox spacing="5" style="-fx-padding: 10;">
+                    <Label text="Obroty silnika:"/>
+                    <TextField fx:id="txtObroty" promptText="Obroty" editable="false"/>
+                    
+                    <Label text="Temperatura silnika:"/>
+                    <TextField fx:id="txtTemperatura" promptText="Temperatura" editable="false"/>
+                    
+                    <ProgressBar fx:id="progressBarObroty" prefWidth="200" progress="0.0"/>
+                    
+                    <HBox spacing="10" style="-fx-padding: 5 0 0 0;">
+                        <Button text="Uruchom silnik" fx:id="btnUruchomSilnik" prefWidth="100"/>
+                        <Button text="Zatrzymaj silnik" fx:id="btnZatrzymajSilnik" prefWidth="100"/>
+                    </HBox>
+                </VBox>
+            </TitledPane>
+
+            <!-- Sprzęgło -->
+            <TitledPane text="Sprzęgło" expanded="true">
+                <VBox spacing="5" style="-fx-padding: 10;">
+                    <Label text="Stan sprzęgła:"/>
+                    <TextField fx:id="txtStanSprzegla" promptText="Stan sprzęgła" editable="false"/>
+                    
+                    <CheckBox fx:id="checkSprzeglo" text="Wciśnięte sprzęgło"/>
+                    
+                    <HBox spacing="10" style="-fx-padding: 5 0 0 0;">
+                        <Button text="Wciśnij" fx:id="btnWcisnijSprzeglo" prefWidth="100"/>
+                        <Button text="Zwolnij" fx:id="btnZwolnijSprzeglo" prefWidth="100"/>
+                    </HBox>
+                </VBox>
+            </TitledPane>
+        </VBox>
+    </left>
+
+    <!-- CENTER SECTION - Obraz samochodu -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+            <ImageView fx:id="imageViewSamochod" fitHeight="300" fitWidth="400" preserveRatio="true">
+                <Image url="@../images/car.png"/>
+            </ImageView>
+            
+            <!-- Panel statusu -->
+            <VBox spacing="5" alignment="CENTER">
+                <Label text="Status samochodu:" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                <Label fx:id="lblStatus" text="SAMOCHÓD WYŁĄCZONY" 
+                       style="-fx-font-size: 14; -fx-text-fill: red;"/>
+                
+                <!-- Wskaźniki -->
+                <HBox spacing="20" alignment="CENTER" style="-fx-padding: 20;">
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="PRĘDKOŚĆ"/>
+                        <Label fx:id="lblPredkoscWartosc" text="0 km/h" 
+                               style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                    </VBox>
+                    
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="OBROTY"/>
+                        <Label fx:id="lblObrotyWartosc" text="0 RPM" 
+                               style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                    </VBox>
+                    
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="BIEG"/>
+                        <Label fx:id="lblBiegWartosc" text="N" 
+                               style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+
+    <!-- BOTTOM SECTION - Status bar -->
+    <bottom>
+        <BorderPane style="-fx-background-color: #f0f0f0; -fx-padding: 5;">
+            <left>
+                <Label text="Symulator Samochodu v1.0" style="-fx-text-fill: #666;"/>
+            </left>
+            <right>
+                <Label fx:id="lblCzas" text="Czas: 00:00:00" style="-fx-text-fill: #666;"/>
+            </right>
+        </BorderPane>
+    </bottom>
+
+</BorderPane>
