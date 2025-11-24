@@ -5,7 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" prefHeight="600.0" prefWidth="800.0">
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.samgui.SamochodController"
+            prefHeight="600.0" prefWidth="800.0">
 
     <top>
         <VBox>
@@ -22,9 +24,9 @@
 
             <ToolBar>
                 <Label text="Samochód: "/>
-                <ComboBox promptText="Wybierz samochód" prefWidth="150.0"/>
-                <Button text="Dodaj nowy"/>
-                <Button text="Usuń"/>
+                <ComboBox fx:id="comboWybierz" promptText="Wybierz samochód" prefWidth="150.0"/>
+                <Button fx:id="btndodaj" text="Dodaj nowy"/>
+                <Button fx:id="btnusun" text="Usuń"/>
             </ToolBar>
         </VBox>
     </top>
@@ -40,16 +42,16 @@
                     <TitledPane text="Samochód" collapsible="true" expanded="true">
                         <VBox spacing="5">
                             <Label text="Model:"/>
-                            <TextField promptText="np. BMW M3"/>
+                            <TextField fx:id="FieldModel" promptText="np. BMW M3"/>
                             <Label text="Nr rejestracyjny:"/>
-                            <TextField promptText="np. KR 12345"/>
+                            <TextField fx:id="FieldRejestracyjny" promptText="np. KR 12345"/>
                             <Label text="Waga:"/>
-                            <TextField promptText="0.0"/>
+                            <TextField fx:id="FieldWaga" promptText="0.0"/>
                             <Label text="Prędkość:"/>
-                            <TextField promptText="0.0"/>
+                            <TextField fx:id="FieldPredkosc" promptText="0.0"/>
                             <HBox spacing="10" alignment="CENTER">
-                                <Button text="Włącz"/>
-                                <Button text="Wyłącz"/>
+                                <Button fx:id="btnWlacz" text="Włącz"/>
+                                <Button fx:id="btnWylacz" text="Wyłącz"/>
                             </HBox>
                         </VBox>
                     </TitledPane>
