@@ -5,7 +5,12 @@
       <module fileurl="file://$PROJECT_DIR$/Lab1/Lab1.iml" filepath="$PROJECT_DIR$/Lab1/Lab1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab2/Lab2.iml" filepath="$PROJECT_DIR$/Lab2/Lab2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab3/Lab3.iml" filepath="$PROJECT_DIR$/Lab3/Lab3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab4/Lab4.iml" filepath="$PROJECT_DIR$/Lab4/Lab4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/symulator/SamGUI/SamGUI.iml" filepath="$PROJECT_DIR$/symulator/SamGUI/SamGUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/po2025.iml" filepath="$PROJECT_DIR$/po2025.iml" />
+      <module fileurl="file://$PROJECT_DIR$/symulator/symulator.iml" filepath="$PROJECT_DIR$/symulator/symulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/symulator/untitled/untitled.iml" filepath="$PROJECT_DIR$/symulator/untitled/untitled.iml" />
+      <module fileurl="file://$PROJECT_DIR$/symulator/untitled1/untitled1.iml" filepath="$PROJECT_DIR$/symulator/untitled1/untitled1.iml" />
     </modules>
   </component>
 </project>
