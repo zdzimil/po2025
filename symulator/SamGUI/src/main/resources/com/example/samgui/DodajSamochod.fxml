@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.samgui.DodajSamochodController"
+      spacing="10.0" alignment="CENTER" prefWidth="300.0" prefHeight="400.0">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Dodaj nowy samochód" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <Label text="Model:"/>
+    <TextField fx:id="modelTextField" promptText="np. Audi A4"/>
+
+    <Label text="Numer Rejestracyjny:"/>
+    <TextField fx:id="registrationTextField" promptText="np. KR 12345"/>
+
+    <Label text="Waga (kg):"/>
+    <TextField fx:id="weightTextField" promptText="np. 1500"/>
+
+    <Label text="Prędkość Max (km/h):"/>
+    <TextField fx:id="speedTextField" promptText="np. 240"/>
+
+    <HBox spacing="15" alignment="CENTER">
+        <Button fx:id="confirmButton" text="Zatwierdź" onAction="#onConfirmButton"/>
+        <Button fx:id="cancelButton" text="Anuluj" onAction="#onCancelButton"/>
+    </HBox>
+
+</VBox>
