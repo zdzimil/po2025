@@ -106,6 +106,31 @@ public class SamochodController {
         stage.show();
     }
 
+
+    private void refresh() {
+        if (mojSamochod == null) return;
+
+        // Sekcja Samochód
+        FieldModel.setText(mojSamochod.getModel());
+        FieldRejestracyjny.setText(mojSamochod.getNrRejest()); // Teraz zadziała
+        FieldWaga.setText(String.valueOf(mojSamochod.getWaga()));
+        FieldPredkosc.setText(String.valueOf(mojSamochod.getAktPredkosc()));
+
+        // Sekcja Silnik
+        // Uwaga: Upewnij się, że klasa Silnik (w symulator/Silnik.java) ma metodę getNazwa() (dziedziczy po Komponent)
+        FieldSilnikNazwa.setText(mojSamochod.getSilnik().getNazwa());
+        FieldSilnikObroty.setText(String.valueOf(mojSamochod.getSilnik().getObroty()));
+
+        // Sekcja Skrzynia
+        FieldBieg.setText(String.valueOf(mojSamochod.getSkrzynia().getAktBieg()));
+        FieldSkrzyniaNazwa.setText(mojSamochod.getSkrzynia().getNazwa());
+
+        // Sekcja Sprzęgło
+        FieldSprzegloNazwa.setText(mojSamochod.getSprzeglo().getNazwa());
+        boolean wcisniete = mojSamochod.getSprzeglo().isWcisniete();
+        FieldSprzegloStan.setText(wcisniete ? "Wciśnięte" : "Zwolnione");
+    }
+
     @FXML
     public void initialize() {
         System.out.println("Kontroler załadowany poprawnie.");
@@ -113,6 +138,7 @@ public class SamochodController {
         if (FieldModel != null) {
             FieldModel.setText("Gotowy do pracy");
         }
+
 
         if (btndodaj != null) {
             btndodaj.setOnAction(event -> {

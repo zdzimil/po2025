@@ -42,4 +42,5 @@ public class DodajSamochodController {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
+
 }
