@@ -42,13 +42,13 @@
                     <TitledPane text="Samochód" collapsible="true" expanded="true">
                         <VBox spacing="5">
                             <Label text="Model:"/>
-                            <TextField fx:id="FieldModel" promptText="np. BMW M3"/>
+                            <TextField fx:id="FieldModel" editable="false"/>
                             <Label text="Nr rejestracyjny:"/>
-                            <TextField fx:id="FieldRejestracyjny" promptText="np. KR 12345"/>
+                            <TextField fx:id="FieldRejestracyjny" editable="false"/>
                             <Label text="Waga:"/>
-                            <TextField fx:id="FieldWaga" promptText="0.0"/>
+                            <TextField fx:id="FieldWaga" editable="false"/>
                             <Label text="Prędkość:"/>
-                            <TextField fx:id="FieldPredkosc" promptText="0.0"/>
+                            <TextField fx:id="FieldPredkosc" editable="false"/>
                             <HBox spacing="10" alignment="CENTER">
                                 <Button fx:id="btnWlacz" text="Włącz"/>
                                 <Button fx:id="btnWylacz" text="Wyłącz"/>
@@ -59,13 +59,13 @@
                     <TitledPane text="Skrzynia Biegów" collapsible="true" expanded="false">
                         <VBox spacing="5">
                             <Label text="Nazwa:"/>
-                            <TextField fx:id="FieldSkrzyniaNazwa"/>
+                            <TextField fx:id="FieldSkrzyniaNazwa" editable="false"/>
                             <Label text="Cena:"/>
-                            <TextField fx:id="FieldSkrzyniaCena"/>
+                            <TextField fx:id="FieldSkrzyniaCena" editable="false"/>
                             <Label text="Waga:"/>
-                            <TextField fx:id="FieldSkrzyniaWaga"/>
+                            <TextField fx:id="FieldSkrzyniaWaga" editable="false"/>
                             <Label text="Aktualny Bieg:"/>
-                            <TextField fx:id="FieldBieg"/>
+                            <TextField fx:id="FieldBieg" editable="false"/>
                             <HBox spacing="10" alignment="CENTER">
                                 <Button fx:id="BtnBiegGora" text="Zwiększ bieg"/>
                                 <Button fx:id="BtnBiegDol" text="Zmniejsz bieg"/>
@@ -76,13 +76,13 @@
                     <TitledPane text="Silnik" collapsible="true" expanded="false">
                         <VBox spacing="5">
                             <Label text="Nazwa:"/>
-                            <TextField fx:id="FieldSilnikNazwa" />
+                            <TextField fx:id="FieldSilnikNazwa" editable="false"/>
                             <Label text="Cena:"/>
-                            <TextField fx:id="FieldSilnikCena" />
+                            <TextField fx:id="FieldSilnikCena" editable="false"/>
                             <Label text="Waga:"/>
-                            <TextField fx:id="FieldSilnikWaga" />
+                            <TextField fx:id="FieldSilnikWaga" editable="false"/>
                             <Label text="Obroty:"/>
-                            <TextField fx:id="FieldSilnikObroty" />
+                            <TextField fx:id="FieldSilnikObroty" editable="false"/>
                             <HBox spacing="10" alignment="CENTER">
                                 <Button fx:id="Btnzwieksz" text="Zwiększ obroty"/>
                                 <Button fx:id="Btnzmniejsz" text="Zmniejsz obroty"/>
@@ -93,13 +93,13 @@
                     <TitledPane text="Sprzęgło" collapsible="true" expanded="false">
                         <VBox spacing="5">
                             <Label text="Nazwa:"/>
-                            <TextField fx:id="FieldSprzegloNazwa" />
+                            <TextField fx:id="FieldSprzegloNazwa" editable="false"/>
                             <Label text="Cena:"/>
-                            <TextField fx:id="FieldSprzegloCena" />
+                            <TextField fx:id="FieldSprzegloCena" editable="false"/>
                             <Label text="Waga:"/>
-                            <TextField fx:id="FieldSprzegloWaga"/>
+                            <TextField fx:id="FieldSprzegloWaga" editable="false"/>
                             <Label text="Stan:"/>
-                            <TextField fx:id="FieldSprzegloStan" />
+                            <TextField fx:id="FieldSprzegloStan" editable="false"/>
                             <HBox spacing="10" alignment="CENTER">
                                 <Button fx:id="BtnWcisnij" text="Wciśnij"/>
                                 <Button fx:id="BtnZwolnij" text="Zwolnij"/>

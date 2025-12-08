@@ -9,8 +9,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
+import symulator.*;
 
 public class SamochodController {
+
 
     @FXML
     private ComboBox<String> comboWybierz;
@@ -96,6 +98,7 @@ public class SamochodController {
     @FXML
     private ImageView samochodImage;
 
+    private Samochod mojSamochod;
 
     public void openAddCarWindow() throws IOException {
         FXMLLoader loader = new
@@ -109,23 +112,11 @@ public class SamochodController {
 
     private void refresh() {
         if (mojSamochod == null) return;
-
-        // Sekcja Samochód
         FieldModel.setText(mojSamochod.getModel());
-        FieldRejestracyjny.setText(mojSamochod.getNrRejest()); // Teraz zadziała
         FieldWaga.setText(String.valueOf(mojSamochod.getWaga()));
         FieldPredkosc.setText(String.valueOf(mojSamochod.getAktPredkosc()));
-
-        // Sekcja Silnik
-        // Uwaga: Upewnij się, że klasa Silnik (w symulator/Silnik.java) ma metodę getNazwa() (dziedziczy po Komponent)
-        FieldSilnikNazwa.setText(mojSamochod.getSilnik().getNazwa());
-        FieldSilnikObroty.setText(String.valueOf(mojSamochod.getSilnik().getObroty()));
-
-        // Sekcja Skrzynia
         FieldBieg.setText(String.valueOf(mojSamochod.getSkrzynia().getAktBieg()));
         FieldSkrzyniaNazwa.setText(mojSamochod.getSkrzynia().getNazwa());
-
-        // Sekcja Sprzęgło
         FieldSprzegloNazwa.setText(mojSamochod.getSprzeglo().getNazwa());
         boolean wcisniete = mojSamochod.getSprzeglo().isWcisniete();
         FieldSprzegloStan.setText(wcisniete ? "Wciśnięte" : "Zwolnione");
@@ -138,7 +129,6 @@ public class SamochodController {
         if (FieldModel != null) {
             FieldModel.setText("Gotowy do pracy");
         }
-
 
         if (btndodaj != null) {
             btndodaj.setOnAction(event -> {

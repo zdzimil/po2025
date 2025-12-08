@@ -10,10 +10,8 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        // Ładujemy nasz nowy widok FXML
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("samochod_gui.fxml"));
 
-        // Tworzymy scenę
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("samochod_gui.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 
         stage.setTitle("Symulator Samochodu GUI");
