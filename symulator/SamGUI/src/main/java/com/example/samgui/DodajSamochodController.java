@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import symulator.*;
 
 public class DodajSamochodController {
 
@@ -27,14 +28,17 @@ public class DodajSamochodController {
     private void onConfirmButton() {
         String model = modelTextField.getText();
         String registration = registrationTextField.getText();
-        double weight;
-        int speed;
 
         try {
-            weight = Double.parseDouble(weightTextField.getText());
-            speed = Integer.parseInt(speedTextField.getText());
+            double weight = Double.parseDouble(weightTextField.getText());
+            int speed = Integer.parseInt(speedTextField.getText());
 
-            System.out.println("Dodano: " + model + " (" + registration + ")");
+            Sprzeglo s = new Sprzeglo("Standard", 5, 200, "Producent", "M1");
+            Silnik sil = new Silnik("R4", 150, 5000, "Producent", "S1", 6000);
+            SkrzyniaBiegow sk = new SkrzyniaBiegow("Manual", 30, 1000, "Producent", "B1", 5, s);
+
+            Samochod nowy = new Samochod(registration, model, speed, sil, sk, s, new Pozycja(0,0));
+            SamochodController.addCarToList(nowy);
 
             Stage stage = (Stage) confirmButton.getScene().getWindow();
             stage.close();

@@ -1,5 +1,7 @@
 package com.example.samgui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,9 +16,10 @@ public class SamochodController {
     @FXML private Button wlaczButton, wylaczButton, zwiekszBiegButton, zmniejszBiegButton, zwiekszObrotyButton, zmniejszObrotyButton, wcisnijSprzegloButton, zwolnijSprzegloButton, dodajNowyButton;
     @FXML private TextField modelTextField, registrationTextField, weightTextField, speedTextField, gearTextField, rpmTextField, clutchTextField;
     @FXML private ImageView carImageView;
-    @FXML private ComboBox<String> carComboBox;
+    @FXML private ComboBox<Samochod> carComboBox;
 
     private Samochod mojSamochod;
+    private static ObservableList<Samochod> listaSamochodow = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -25,13 +28,28 @@ public class SamochodController {
         SkrzyniaBiegow sk = new SkrzyniaBiegow("Manual", 50, 2000, "Getrag", "6B", 6, s);
         mojSamochod = new Samochod("KR 123", "BMW M3", 250, sil, sk, s, new Pozycja(0,0));
 
+        listaSamochodow.add(mojSamochod);
+        carComboBox.setItems(listaSamochodow);
+
+        carComboBox.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Samochod item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getModel());
+            }
+        });
+        carComboBox.setButtonCell(carComboBox.getCellFactory().call(null));
+
+        carComboBox.setOnAction(event -> {
+            mojSamochod = carComboBox.getSelectionModel().getSelectedItem();
+            refresh();
+        });
+
         try {
             Image carImage = new Image(getClass().getResource("/com/example/samgui/car.png").toExternalForm());
             carImageView.setImage(carImage);
             carImageView.setFitWidth(100);
             carImageView.setPreserveRatio(true);
-            carImageView.setTranslateX(0);
-            carImageView.setTranslateY(0);
         } catch (Exception e) {
             System.out.println("Błąd ładowania obrazka");
         }
@@ -48,6 +66,10 @@ public class SamochodController {
         gearTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getAktBieg()));
         rpmTextField.setText(String.valueOf(mojSamochod.getSilnik().getObroty()));
         clutchTextField.setText(mojSamochod.getSprzeglo().isWcisniete() ? "Wciśnięte" : "Zwolnione");
+    }
+
+    public static void addCarToList(Samochod s) {
+        listaSamochodow.add(s);
     }
 
     @FXML private void onWlaczButton() {
