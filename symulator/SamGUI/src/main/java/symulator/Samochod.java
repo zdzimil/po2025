@@ -5,15 +5,14 @@ public class Samochod {
     private String nrRejest;
     private String model;
     private double predkoscMax;
-
+    private double aktualnaPredkosc;
+    
     // Komponenty składowe
     private Silnik silnik;
     private SkrzyniaBiegow skrzynia;
     private Sprzeglo sprzeglo;
     private Pozycja aktualnaPozycja;
 
-    // Pole pomocnicze do metody getAktPredkosc
-    private double aktualnaPredkosc;
 
     public Samochod(String nrRejest, String model, double predkoscMax, Silnik silnik, SkrzyniaBiegow skrzynia, Sprzeglo sprzeglo, Pozycja aktualnaPozycja) {
         this.nrRejest = nrRejest;
@@ -43,7 +42,6 @@ public class Samochod {
 
     public void jedzDo(Pozycja cel) {
         if (stanWlaczenia) {
-            // Prosta symulacja ruchu
             aktualnaPredkosc = skrzynia.getAktBieg() * 20.0;
             if (aktualnaPredkosc > predkoscMax) {
                 aktualnaPredkosc = predkoscMax;
@@ -56,7 +54,6 @@ public class Samochod {
     }
 
     public double getWaga() {
-        // Suma wag komponentów + waga własna karoserii (np. 1000)
         return silnik.getWaga() + skrzynia.getWaga() + sprzeglo.getWaga() + 1000;
     }
 
@@ -68,7 +65,7 @@ public class Samochod {
         return aktualnaPozycja.getPozycja();
     }
 
-    // Gettery potrzebne dla klasy Zawody (żeby nie było błędów private access)
+    // Gettery potrzebne dla klasy Zawody
     public String getModel() {
         return model;
     }
