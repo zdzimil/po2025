@@ -16,109 +16,72 @@
                     <Menu text="Plik">
                         <MenuItem text="Zamknij"/>
                     </Menu>
-                    <Menu text="Edycja">
-                        <MenuItem text="Wyczyść"/>
-                    </Menu>
                 </menus>
             </MenuBar>
-
             <ToolBar>
                 <Label text="Samochód: "/>
-                <ComboBox fx:id="comboWybierz" promptText="Wybierz samochód" prefWidth="150.0"/>
-                <Button fx:id="btndodaj" text="Dodaj nowy"/>
-                <Button fx:id="btnusun" text="Usuń"/>
+                <ComboBox fx:id="carComboBox" prefWidth="150.0"/>
+                <Button fx:id="dodajNowyButton" text="Dodaj nowy" onAction="#onDodajNowyButton"/>
             </ToolBar>
         </VBox>
     </top>
 
     <left>
-        <ScrollPane fitToWidth="true" prefWidth="300.0">
-            <content>
-                <VBox spacing="5.0">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
+        <ScrollPane prefWidth="300.0">
+            <VBox spacing="10">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
 
-                    <TitledPane text="Samochód" collapsible="true" expanded="true">
-                        <VBox spacing="5">
-                            <Label text="Model:"/>
-                            <TextField fx:id="FieldModel" editable="false"/>
-                            <Label text="Nr rejestracyjny:"/>
-                            <TextField fx:id="FieldRejestracyjny" editable="false"/>
-                            <Label text="Waga:"/>
-                            <TextField fx:id="FieldWaga" editable="false"/>
-                            <Label text="Prędkość:"/>
-                            <TextField fx:id="FieldPredkosc" editable="false"/>
-                            <HBox spacing="10" alignment="CENTER">
-                                <Button fx:id="btnWlacz" text="Włącz"/>
-                                <Button fx:id="btnWylacz" text="Wyłącz"/>
-                            </HBox>
-                        </VBox>
-                    </TitledPane>
+                <TitledPane text="Samochód" expanded="true">
+                    <VBox spacing="5">
+                        <Label text="Model:"/>
+                        <TextField fx:id="modelTextField" editable="false"/>
+                        <Label text="Rejestracja:"/>
+                        <TextField fx:id="registrationTextField" editable="false"/>
+                        <Label text="Waga:"/>
+                        <TextField fx:id="weightTextField" editable="false"/>
+                        <Label text="Prędkość:"/>
+                        <TextField fx:id="speedTextField" editable="false"/>
+                        <HBox spacing="10">
+                            <Button fx:id="wlaczButton" text="Włącz" onAction="#onWlaczButton"/>
+                            <Button fx:id="wylaczButton" text="Wyłącz" onAction="#onWylaczButton"/>
+                        </HBox>
+                    </VBox>
+                </TitledPane>
 
-                    <TitledPane text="Skrzynia Biegów" collapsible="true" expanded="false">
-                        <VBox spacing="5">
-                            <Label text="Nazwa:"/>
-                            <TextField fx:id="FieldSkrzyniaNazwa" editable="false"/>
-                            <Label text="Cena:"/>
-                            <TextField fx:id="FieldSkrzyniaCena" editable="false"/>
-                            <Label text="Waga:"/>
-                            <TextField fx:id="FieldSkrzyniaWaga" editable="false"/>
-                            <Label text="Aktualny Bieg:"/>
-                            <TextField fx:id="FieldBieg" editable="false"/>
-                            <HBox spacing="10" alignment="CENTER">
-                                <Button fx:id="BtnBiegGora" text="Zwiększ bieg"/>
-                                <Button fx:id="BtnBiegDol" text="Zmniejsz bieg"/>
-                            </HBox>
-                        </VBox>
-                    </TitledPane>
+                <TitledPane text="Skrzynia i Silnik" expanded="true">
+                    <VBox spacing="5">
+                        <Label text="Bieg:"/>
+                        <TextField fx:id="gearTextField" editable="false"/>
+                        <HBox spacing="5">
+                            <Button fx:id="zwiekszBiegButton" text="+" onAction="#onZwiekszBiegButton"/>
+                            <Button fx:id="zmniejszBiegButton" text="-" onAction="#onZmniejszBiegButton"/>
+                        </HBox>
+                        <Label text="Obroty:"/>
+                        <TextField fx:id="rpmTextField" editable="false"/>
+                        <HBox spacing="5">
+                            <Button fx:id="zwiekszObrotyButton" text="+" onAction="#onZwiekszObrotyButton"/>
+                            <Button fx:id="zmniejszObrotyButton" text="-" onAction="#onZmniejszObrotyButton"/>
+                        </HBox>
+                    </VBox>
+                </TitledPane>
 
-                    <TitledPane text="Silnik" collapsible="true" expanded="false">
-                        <VBox spacing="5">
-                            <Label text="Nazwa:"/>
-                            <TextField fx:id="FieldSilnikNazwa" editable="false"/>
-                            <Label text="Cena:"/>
-                            <TextField fx:id="FieldSilnikCena" editable="false"/>
-                            <Label text="Waga:"/>
-                            <TextField fx:id="FieldSilnikWaga" editable="false"/>
-                            <Label text="Obroty:"/>
-                            <TextField fx:id="FieldSilnikObroty" editable="false"/>
-                            <HBox spacing="10" alignment="CENTER">
-                                <Button fx:id="Btnzwieksz" text="Zwiększ obroty"/>
-                                <Button fx:id="Btnzmniejsz" text="Zmniejsz obroty"/>
-                            </HBox>
-                        </VBox>
-                    </TitledPane>
-
-                    <TitledPane text="Sprzęgło" collapsible="true" expanded="false">
-                        <VBox spacing="5">
-                            <Label text="Nazwa:"/>
-                            <TextField fx:id="FieldSprzegloNazwa" editable="false"/>
-                            <Label text="Cena:"/>
-                            <TextField fx:id="FieldSprzegloCena" editable="false"/>
-                            <Label text="Waga:"/>
-                            <TextField fx:id="FieldSprzegloWaga" editable="false"/>
-                            <Label text="Stan:"/>
-                            <TextField fx:id="FieldSprzegloStan" editable="false"/>
-                            <HBox spacing="10" alignment="CENTER">
-                                <Button fx:id="BtnWcisnij" text="Wciśnij"/>
-                                <Button fx:id="BtnZwolnij" text="Zwolnij"/>
-                            </HBox>
-                        </VBox>
-                    </TitledPane>
-
-                </VBox>
-            </content>
+                <TitledPane text="Sprzęgło">
+                    <VBox spacing="5">
+                        <Label text="Stan:"/>
+                        <TextField fx:id="clutchTextField" editable="false"/>
+                        <HBox spacing="10">
+                            <Button fx:id="wcisnijSprzegloButton" text="Wciśnij" onAction="#onWcisnijSprzegloButton"/>
+                            <Button fx:id="zwolnijSprzegloButton" text="Zwolnij" onAction="#onZwolnijSprzegloButton"/>
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+            </VBox>
         </ScrollPane>
     </left>
 
     <center>
-        <StackPane style="-fx-background-color: #90ee90;">
-            <ImageView fx:id="samochodImage" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@s2.png"/>
-                </image>
-            </ImageView>
+        <StackPane>
+            <ImageView fx:id="carImageView" pickOnBounds="true" preserveRatio="true"/>
         </StackPane>
     </center>
 

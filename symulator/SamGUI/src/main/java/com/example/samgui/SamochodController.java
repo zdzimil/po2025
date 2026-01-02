@@ -2,147 +2,100 @@ package com.example.samgui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
 import java.io.IOException;
 import symulator.*;
 
 public class SamochodController {
-
-
-    @FXML
-    private ComboBox<String> comboWybierz;
-
-    @FXML
-    private Button btndodaj;
-
-    @FXML
-    private Button btnusun;
-
-    @FXML
-    private TextField FieldModel;
-
-    @FXML
-    private TextField FieldRejestracyjny;
-
-    @FXML
-    private TextField FieldWaga;
-
-    @FXML
-    private TextField FieldPredkosc;
-
-    @FXML
-    private Button btnWlacz;
-
-    @FXML
-    private Button btnWylacz;
-
-    @FXML
-    private TextField FieldSkrzyniaNazwa;
-
-    @FXML
-    private TextField FieldSkrzyniaCena;
-
-    @FXML
-    private TextField FieldSkrzyniaWaga;
-
-    @FXML
-    private TextField FieldBieg;
-
-    @FXML
-    private Button BtnBiegGora;
-
-    @FXML
-    private Button BtnBiegDol;
-
-    @FXML
-    private TextField FieldSilnikNazwa;
-
-    @FXML
-    private TextField FieldSilnikCena;
-
-    @FXML
-    private TextField FieldSilnikWaga;
-
-    @FXML
-    private TextField FieldSilnikObroty;
-
-    @FXML
-    private Button Btnzwieksz;
-
-    @FXML
-    private Button Btnzmniejsz;
-
-    @FXML
-    private TextField FieldSprzegloNazwa;
-
-    @FXML
-    private TextField FieldSprzegloCena;
-
-    @FXML
-    private TextField FieldSprzegloWaga;
-
-    @FXML
-    private TextField FieldSprzegloStan;
-
-    @FXML
-    private Button BtnWcisnij;
-
-    @FXML
-    private Button BtnZwolnij;
-
-    @FXML
-    private ImageView samochodImage;
+    @FXML private Button wlaczButton, wylaczButton, zwiekszBiegButton, zmniejszBiegButton, zwiekszObrotyButton, zmniejszObrotyButton, wcisnijSprzegloButton, zwolnijSprzegloButton, dodajNowyButton;
+    @FXML private TextField modelTextField, registrationTextField, weightTextField, speedTextField, gearTextField, rpmTextField, clutchTextField;
+    @FXML private ImageView carImageView;
+    @FXML private ComboBox<String> carComboBox;
 
     private Samochod mojSamochod;
 
-    public void openAddCarWindow() throws IOException {
-        FXMLLoader loader = new
-                FXMLLoader(getClass().getResource("DodajSamochod.fxml"));
+    @FXML
+    public void initialize() {
+        Sprzeglo s = new Sprzeglo("Sport", 10, 500, "Sachs", "S1");
+        Silnik sil = new Silnik("V8", 300, 10000, "BMW", "M5", 8000);
+        SkrzyniaBiegow sk = new SkrzyniaBiegow("Manual", 50, 2000, "Getrag", "6B", 6, s);
+        mojSamochod = new Samochod("KR 123", "BMW M3", 250, sil, sk, s, new Pozycja(0,0));
+
+        try {
+            Image carImage = new Image(getClass().getResource("/com/example/samgui/car.png").toExternalForm());
+            carImageView.setImage(carImage);
+            carImageView.setFitWidth(100);
+            carImageView.setPreserveRatio(true);
+            carImageView.setTranslateX(0);
+            carImageView.setTranslateY(0);
+        } catch (Exception e) {
+            System.out.println("Błąd ładowania obrazka");
+        }
+
+        refresh();
+    }
+
+    private void refresh() {
+        if (mojSamochod == null) return;
+        weightTextField.setText(String.valueOf(mojSamochod.getWaga()));
+        registrationTextField.setText(mojSamochod.getNrRejest());
+        speedTextField.setText(String.valueOf(mojSamochod.getAktPredkosc()));
+        modelTextField.setText(mojSamochod.getModel());
+        gearTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getAktBieg()));
+        rpmTextField.setText(String.valueOf(mojSamochod.getSilnik().getObroty()));
+        clutchTextField.setText(mojSamochod.getSprzeglo().isWcisniete() ? "Wciśnięte" : "Zwolnione");
+    }
+
+    @FXML private void onWlaczButton() {
+        mojSamochod.wlacz();
+        refresh();
+    }
+
+    @FXML private void onWylaczButton() {
+        mojSamochod.wylacz();
+        refresh();
+    }
+
+    @FXML private void onZwiekszBiegButton() {
+        mojSamochod.getSkrzynia().zwiekszBieg();
+        refresh();
+    }
+
+    @FXML private void onZmniejszBiegButton() {
+        mojSamochod.getSkrzynia().zmniejszBieg();
+        refresh();
+    }
+
+    @FXML private void onWcisnijSprzegloButton() {
+        mojSamochod.getSprzeglo().wcisnij();
+        refresh();
+    }
+
+    @FXML private void onZwolnijSprzegloButton() {
+        mojSamochod.getSprzeglo().zwolnij();
+        refresh();
+    }
+
+    @FXML private void onZwiekszObrotyButton() {
+        mojSamochod.getSilnik().zwiekszObroty();
+        refresh();
+    }
+
+    @FXML private void onZmniejszObrotyButton() {
+        mojSamochod.getSilnik().zmniejszObroty();
+        refresh();
+    }
+
+    @FXML
+    private void onDodajNowyButton() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DodajSamochod.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Dodaj nowy samochód");
         stage.show();
     }
-
-
-    private void refresh() {
-        if (mojSamochod == null) return;
-        FieldModel.setText(mojSamochod.getModel());
-        FieldWaga.setText(String.valueOf(mojSamochod.getWaga()));
-        FieldPredkosc.setText(String.valueOf(mojSamochod.getAktPredkosc()));
-        FieldBieg.setText(String.valueOf(mojSamochod.getSkrzynia().getAktBieg()));
-        FieldSkrzyniaNazwa.setText(mojSamochod.getSkrzynia().getNazwa());
-        FieldSprzegloNazwa.setText(mojSamochod.getSprzeglo().getNazwa());
-        boolean wcisniete = mojSamochod.getSprzeglo().isWcisniete();
-        FieldSprzegloStan.setText(wcisniete ? "Wciśnięte" : "Zwolnione");
-    }
-
-    @FXML
-    public void initialize() {
-        System.out.println("Kontroler załadowany poprawnie.");
-
-        if (FieldModel != null) {
-            FieldModel.setText("Gotowy do pracy");
-        }
-
-        if (btndodaj != null) {
-            btndodaj.setOnAction(event -> {
-                try {
-                    System.out.println("Kliknięto przycisk Dodaj!"); // Diagnostyka
-                    openAddCarWindow();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println("Błąd otwierania okna: " + e.getMessage());
-                }
-            });
-        }
-    }
-
-
-
 }
