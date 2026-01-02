@@ -1,7 +1,6 @@
 package symulator;
 
 public class Silnik extends Komponent {
-    // Pola z diagramu
     private int maxObroty;
     private int obroty;
 
@@ -11,9 +10,8 @@ public class Silnik extends Komponent {
         this.obroty = 0;
     }
 
-    // Metody z diagramu i tekstu
     public void uruchom() {
-        this.obroty = 800; // obroty początkowe
+        this.obroty = 800;
         System.out.println("Silnik uruchomiony. Obroty: " + obroty);
     }
 
@@ -36,7 +34,6 @@ public class Silnik extends Komponent {
         }
     }
 
-    // Getter potrzebny do wyświetlania stanu
     public int getObroty() {
         return obroty;
     }

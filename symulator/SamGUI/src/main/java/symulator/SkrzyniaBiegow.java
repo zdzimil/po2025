@@ -1,12 +1,10 @@
 package symulator;
 
 public class SkrzyniaBiegow extends Komponent {
-    // Pola z diagramu
     private int aktualnyBieg;
     private int iloscBiegow;
     private double aktualnePrzelozenie;
 
-    // Relacja do sprzęgła widoczna na diagramie (linia 'sprzeglo')
     private Sprzeglo sprzeglo;
 
     public SkrzyniaBiegow(String nazwa, double waga, double cena, String producent, String model, int iloscBiegow, Sprzeglo sprzeglo) {
@@ -16,7 +14,6 @@ public class SkrzyniaBiegow extends Komponent {
         this.aktualnyBieg = 0; // luz
     }
 
-    // Metody z diagramu
     public void zwiekszBieg() {
         if (sprzeglo.isWcisniete()) {
             if (aktualnyBieg < iloscBiegow) {
@@ -46,12 +43,10 @@ public class SkrzyniaBiegow extends Komponent {
     }
 
     public double getAktPrzelozenie() {
-        // Prosta logika przełożenia (np. bieg * 1.5)
         this.aktualnePrzelozenie = aktualnyBieg * 1.5;
         return aktualnePrzelozenie;
     }
 
-    // Metoda pomocnicza dla klasy Samochód (wymagana do metody wylacz())
     public void ustawLuz() {
         this.aktualnyBieg = 0;
     }

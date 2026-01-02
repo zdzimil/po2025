@@ -1,12 +1,9 @@
 package symulator;
 
 public abstract class Komponent {
-    // Pola z diagramu UML
     private String nazwa;
     private double waga;
     private double cena;
-
-    // Pola dodatkowe z tekstu instrukcji
     private String producent;
     private String model;
 
@@ -18,7 +15,6 @@ public abstract class Komponent {
         this.model = model;
     }
 
-    // Metody z diagramu UML i tekstu
     public String getNazwa() {
         return nazwa;
     }

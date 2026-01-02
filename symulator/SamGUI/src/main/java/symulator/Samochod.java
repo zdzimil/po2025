@@ -1,7 +1,6 @@
 package symulator;
 
 public class Samochod {
-    // Pola z diagramu UML
     private boolean stanWlaczenia;
     private String nrRejest;
     private String model;
@@ -10,11 +9,7 @@ public class Samochod {
     // Komponenty składowe
     private Silnik silnik;
     private SkrzyniaBiegow skrzynia;
-    // Sprzęgło nie jest wprost wymienione jako pole w tekście dla Samochodu,
-    // ale jest na diagramie UML połączone z Samochodem (poprzez Skrzynię lub bezpośrednio w zależności od interpretacji linii).
-    // Żeby klasa działała logicznie, dodajemy je.
     private Sprzeglo sprzeglo;
-
     private Pozycja aktualnaPozycja;
 
     // Pole pomocnicze do metody getAktPredkosc
@@ -28,11 +23,10 @@ public class Samochod {
         this.skrzynia = skrzynia;
         this.sprzeglo = sprzeglo;
         this.aktualnaPozycja = aktualnaPozycja;
-        this.stanWlaczenia = false;
+        this.stanWlaczenia = false; // bo zakładamy że nowy obiekt będzie domyślnie wyłączony
         this.aktualnaPredkosc = 0;
     }
 
-    // Metody z diagramu i instrukcji
     public void wlacz() {
         silnik.uruchom();
         stanWlaczenia = true;

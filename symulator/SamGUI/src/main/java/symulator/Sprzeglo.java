@@ -1,7 +1,6 @@
 package symulator;
 
 public class Sprzeglo extends Komponent {
-    // Pole z diagramu
     private boolean stanSprzegla; // false - wyłączone, true - włączone
 
     public Sprzeglo(String nazwa, double waga, double cena, String producent, String model) {
@@ -9,7 +8,6 @@ public class Sprzeglo extends Komponent {
         this.stanSprzegla = false;
     }
 
-    // Metody z diagramu
     public void wcisnij() {
         this.stanSprzegla = true;
         System.out.println("Sprzęgło wciśnięte.");
@@ -19,8 +17,7 @@ public class Sprzeglo extends Komponent {
         this.stanSprzegla = false;
         System.out.println("Sprzęgło zwolnione.");
     }
-
-    // Metoda pomocnicza, żeby inne klasy wiedziały w jakim stanie jest sprzęgło
+    // potrzebne do skrzyni biegów
     public boolean isWcisniete() {
         return stanSprzegla;
     }
