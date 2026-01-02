@@ -6,7 +6,7 @@ public class Samochod {
     private String model;
     private double predkoscMax;
     private double aktualnaPredkosc;
-    
+
     // Komponenty składowe
     private Silnik silnik;
     private SkrzyniaBiegow skrzynia;
@@ -77,4 +77,6 @@ public class Samochod {
     public Sprzeglo getSprzeglo() {
         return sprzeglo;
     }
+
+    public Silnik getSilnik() { return silnik; }
 }
