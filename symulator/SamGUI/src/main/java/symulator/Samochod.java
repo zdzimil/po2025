@@ -79,4 +79,6 @@ public class Samochod {
     }
 
     public Silnik getSilnik() { return silnik; }
+
+    public String getNrRejest() {return nrRejest;}
 }
