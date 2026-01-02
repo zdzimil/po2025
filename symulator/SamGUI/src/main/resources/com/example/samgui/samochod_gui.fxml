@@ -16,12 +16,14 @@
                     <Menu text="Plik">
                         <MenuItem text="Zamknij"/>
                     </Menu>
+                    <Menu text="Edycja"/>
                 </menus>
             </MenuBar>
             <ToolBar>
                 <Label text="Samochód: "/>
                 <ComboBox fx:id="carComboBox" prefWidth="150.0"/>
                 <Button fx:id="dodajNowyButton" text="Dodaj nowy" onAction="#onDodajNowyButton"/>
+                <Button fx:id="usunButton" text="Usuń" onAction="#onUsunButton"/>
             </ToolBar>
         </VBox>
     </top>
@@ -48,29 +50,52 @@
                     </VBox>
                 </TitledPane>
 
-                <TitledPane text="Skrzynia i Silnik" expanded="true">
+                <TitledPane text="Skrzynia Biegów" expanded="true">
                     <VBox spacing="5">
+                        <Label text="Nazwa:"/>
+                        <TextField fx:id="gearboxNameTextField" editable="false"/>
+                        <Label text="Cena:"/>
+                        <TextField fx:id="gearboxPriceTextField" editable="false"/>
+                        <Label text="Waga:"/>
+                        <TextField fx:id="gearboxWeightTextField" editable="false"/>
                         <Label text="Bieg:"/>
                         <TextField fx:id="gearTextField" editable="false"/>
                         <HBox spacing="5">
-                            <Button fx:id="zwiekszBiegButton" text="+" onAction="#onZwiekszBiegButton"/>
-                            <Button fx:id="zmniejszBiegButton" text="-" onAction="#onZmniejszBiegButton"/>
+                            <Button fx:id="zwiekszBiegButton" text="Zwiększ bieg" onAction="#onZwiekszBiegButton"/>
+                            <Button fx:id="zmniejszBiegButton" text="Zmniejsz bieg" onAction="#onZmniejszBiegButton"/>
                         </HBox>
+                    </VBox>
+                </TitledPane>
+
+                <TitledPane text="Silnik" expanded="true">
+                    <VBox spacing="5">
+                        <Label text="Nazwa:"/>
+                        <TextField fx:id="engineNameTextField" editable="false"/>
+                        <Label text="Cena:"/>
+                        <TextField fx:id="enginePriceTextField" editable="false"/>
+                        <Label text="Waga:"/>
+                        <TextField fx:id="engineWeightTextField" editable="false"/>
                         <Label text="Obroty:"/>
                         <TextField fx:id="rpmTextField" editable="false"/>
                         <HBox spacing="5">
-                            <Button fx:id="zwiekszObrotyButton" text="+" onAction="#onZwiekszObrotyButton"/>
-                            <Button fx:id="zmniejszObrotyButton" text="-" onAction="#onZmniejszObrotyButton"/>
+                            <Button fx:id="zwiekszObrotyButton" text="Dodaj gazu" onAction="#onZwiekszObrotyButton"/>
+                            <Button fx:id="zmniejszObrotyButton" text="Umij gazu" onAction="#onZmniejszObrotyButton"/>
                         </HBox>
                     </VBox>
                 </TitledPane>
 
                 <TitledPane text="Sprzęgło">
                     <VBox spacing="5">
+                        <Label text="Nazwa:"/>
+                        <TextField fx:id="clutchNameTextField" editable="false"/>
+                        <Label text="Cena:"/>
+                        <TextField fx:id="clutchPriceTextField" editable="false"/>
+                        <Label text="Waga:"/>
+                        <TextField fx:id="clutchWeightTextField" editable="false"/>
                         <Label text="Stan:"/>
                         <TextField fx:id="clutchTextField" editable="false"/>
                         <HBox spacing="10">
-                            <Button fx:id="wcisnijSprzegloButton" text="Wciśnij" onAction="#onWcisnijSprzegloButton"/>
+                            <Button fx:id="wcisnijSprzegloButton" text="Naciśnij" onAction="#onWcisnijSprzegloButton"/>
                             <Button fx:id="zwolnijSprzegloButton" text="Zwolnij" onAction="#onZwolnijSprzegloButton"/>
                         </HBox>
                     </VBox>

@@ -13,8 +13,11 @@ import java.io.IOException;
 import symulator.*;
 
 public class SamochodController {
-    @FXML private Button wlaczButton, wylaczButton, zwiekszBiegButton, zmniejszBiegButton, zwiekszObrotyButton, zmniejszObrotyButton, wcisnijSprzegloButton, zwolnijSprzegloButton, dodajNowyButton;
+    @FXML private Button wlaczButton, wylaczButton, zwiekszBiegButton, zmniejszBiegButton, zwiekszObrotyButton, zmniejszObrotyButton, wcisnijSprzegloButton, zwolnijSprzegloButton, dodajNowyButton, usunButton;
     @FXML private TextField modelTextField, registrationTextField, weightTextField, speedTextField, gearTextField, rpmTextField, clutchTextField;
+    @FXML private TextField gearboxNameTextField, gearboxPriceTextField, gearboxWeightTextField;
+    @FXML private TextField engineNameTextField, enginePriceTextField, engineWeightTextField;
+    @FXML private TextField clutchNameTextField, clutchPriceTextField, clutchWeightTextField;
     @FXML private ImageView carImageView;
     @FXML private ComboBox<Samochod> carComboBox;
 
@@ -46,7 +49,7 @@ public class SamochodController {
         });
 
         try {
-            Image carImage = new Image(getClass().getResource("/com/example/samgui/car.png").toExternalForm());
+            Image carImage = new Image(getClass().getResource("/com/example/samgui/s2.png").toExternalForm());
             carImageView.setImage(carImage);
             carImageView.setFitWidth(100);
             carImageView.setPreserveRatio(true);
@@ -59,12 +62,29 @@ public class SamochodController {
 
     private void refresh() {
         if (mojSamochod == null) return;
+
+        // Podstawowe dane samochodu
         weightTextField.setText(String.valueOf(mojSamochod.getWaga()));
         registrationTextField.setText(mojSamochod.getNrRejest());
         speedTextField.setText(String.valueOf(mojSamochod.getAktPredkosc()));
         modelTextField.setText(mojSamochod.getModel());
+
+        // Dane Skrzyni
+        gearboxNameTextField.setText(mojSamochod.getSkrzynia().getNazwa());
+        gearboxPriceTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getCena()));
+        gearboxWeightTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getWaga()));
         gearTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getAktBieg()));
+
+        // Dane Silnika
+        engineNameTextField.setText(mojSamochod.getSilnik().getNazwa());
+        enginePriceTextField.setText(String.valueOf(mojSamochod.getSilnik().getCena()));
+        engineWeightTextField.setText(String.valueOf(mojSamochod.getSilnik().getWaga()));
         rpmTextField.setText(String.valueOf(mojSamochod.getSilnik().getObroty()));
+
+        // Dane Sprzęgła
+        clutchNameTextField.setText(mojSamochod.getSprzeglo().getNazwa());
+        clutchPriceTextField.setText(String.valueOf(mojSamochod.getSprzeglo().getCena()));
+        clutchWeightTextField.setText(String.valueOf(mojSamochod.getSprzeglo().getWaga()));
         clutchTextField.setText(mojSamochod.getSprzeglo().isWcisniete() ? "Wciśnięte" : "Zwolnione");
     }
 
@@ -110,6 +130,11 @@ public class SamochodController {
     @FXML private void onZmniejszObrotyButton() {
         mojSamochod.getSilnik().zmniejszObroty();
         refresh();
+    }
+
+    @FXML
+    private void onUsunButton() {
+        System.out.println("Kliknięto Usuń");
     }
 
     @FXML
