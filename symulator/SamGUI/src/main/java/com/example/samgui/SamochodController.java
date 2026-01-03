@@ -51,14 +51,20 @@ public class SamochodController {
         try {
             Image carImage = new Image(getClass().getResource("/com/example/samgui/s2.png").toExternalForm());
             carImageView.setImage(carImage);
+
             carImageView.setFitWidth(100);
-            carImageView.setPreserveRatio(true);
+            carImageView.setFitHeight(80);
+
+            carImageView.setTranslateX(0);
+            carImageView.setTranslateY(0);
+
         } catch (Exception e) {
             System.out.println("Błąd ładowania obrazka");
         }
 
         refresh();
     }
+
 
     private void refresh() {
         if (mojSamochod == null) return;

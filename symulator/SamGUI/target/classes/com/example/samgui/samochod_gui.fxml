@@ -105,9 +105,11 @@
     </left>
 
     <center>
-        <StackPane>
-            <ImageView fx:id="carImageView" pickOnBounds="true" preserveRatio="true"/>
-        </StackPane>
+        <Pane fx:id="mapa" style="-fx-background-color: #90ee90;">
+            <children>
+                <ImageView fx:id="carImageView" pickOnBounds="true" preserveRatio="true"/>
+            </children>
+        </Pane>
     </center>
 
 </BorderPane>
