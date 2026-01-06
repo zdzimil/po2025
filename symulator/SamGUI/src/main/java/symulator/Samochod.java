@@ -98,11 +98,12 @@ public class Samochod extends Thread {
     }
 
     public void run() {
-        double deltat = 0.1; // Krok czasowy symulacji
+        double deltat = 0.1;
 
         while (true) {
             try {
                 Thread.sleep(100);
+
                 if (stanWlaczenia && cel != null) {
                     double x = aktualnaPozycja.getX();
                     double y = aktualnaPozycja.getY();
@@ -111,30 +112,32 @@ public class Samochod extends Thread {
 
                     double odleglosc = Math.sqrt(Math.pow(celX - x, 2) + Math.pow(celY - y, 2));
 
-                    // bo trudno jest trafić idealne w cel wiec sobie przyjmuje że gdy jest wytarczająco blisko celu.
-                    if (odleglosc > 1) {
-                        aktualnaPredkosc = skrzynia.getAktBieg() * 20.0;
-                            if (aktualnaPredkosc > predkoscMax) {
-                                aktualnaPredkosc = predkoscMax;
-                            }
-                        double dx = aktualnaPredkosc * deltat * (celX - x) / odleglosc;
-                        double dy = aktualnaPredkosc * deltat * (celY - y) / odleglosc;
+                    double docelowaPredkosc = skrzynia.getAktBieg() * 70.0;
+                    if (docelowaPredkosc > predkoscMax) {
+                        docelowaPredkosc = predkoscMax;
+                    }
+                    aktualnaPredkosc = docelowaPredkosc;
 
-                        aktualnaPozycja.aktualizujPozycje(x + dx, y + dy);
+                    double krok = aktualnaPredkosc * deltat;
 
+                    if (aktualnaPredkosc > 0) {
+                        if (odleglosc > krok) {
+                            double dx = krok * (celX - x) / odleglosc;
+                            double dy = krok * (celY - y) / odleglosc;
+                            aktualnaPozycja.aktualizujPozycje(x + dx, y + dy);
+                        } else {
+                            aktualnaPozycja.aktualizujPozycje(celX, celY);
+                            aktualnaPredkosc = 0;
+                        }
                         notifyListeners();
-
-                    } else {
-                        //jestmsy przy celu
-                        aktualnaPredkosc = 0;
-
                     }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
     }
-
 
 }

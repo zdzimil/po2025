@@ -88,32 +88,33 @@ public class SamochodController  implements Listener {
     private void refresh() {
         if (mojSamochod == null) return;
 
+
         Platform.runLater(() -> {
             carImageView.setTranslateX(mojSamochod.getAktPozycja().getX());
             carImageView.setTranslateY(mojSamochod.getAktPozycja().getY());
+
+            // Podstawowe dane samochodu
+            weightTextField.setText(String.valueOf(mojSamochod.getWaga()));
+            registrationTextField.setText(mojSamochod.getNrRejest());
+            speedTextField.setText(String.valueOf(mojSamochod.getAktPredkosc()));
+            modelTextField.setText(mojSamochod.getModel());
+
+            // Dane komponentów
+            gearboxNameTextField.setText(mojSamochod.getSkrzynia().getNazwa());
+            gearboxPriceTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getCena()));
+            gearboxWeightTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getWaga()));
+            gearTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getAktBieg()));
+
+            engineNameTextField.setText(mojSamochod.getSilnik().getNazwa());
+            enginePriceTextField.setText(String.valueOf(mojSamochod.getSilnik().getCena()));
+            engineWeightTextField.setText(String.valueOf(mojSamochod.getSilnik().getWaga()));
+            rpmTextField.setText(String.valueOf(mojSamochod.getSilnik().getObroty()));
+
+            clutchNameTextField.setText(mojSamochod.getSprzeglo().getNazwa());
+            clutchPriceTextField.setText(String.valueOf(mojSamochod.getSprzeglo().getCena()));
+            clutchWeightTextField.setText(String.valueOf(mojSamochod.getSprzeglo().getWaga()));
+            clutchTextField.setText(mojSamochod.getSprzeglo().isWcisniete() ? "Wciśnięte" : "Zwolnione");
         });
-
-        // Podstawowe dane samochodu
-        weightTextField.setText(String.valueOf(mojSamochod.getWaga()));
-        registrationTextField.setText(mojSamochod.getNrRejest());
-        speedTextField.setText(String.valueOf(mojSamochod.getAktPredkosc()));
-        modelTextField.setText(mojSamochod.getModel());
-
-        // Dane komponentów
-        gearboxNameTextField.setText(mojSamochod.getSkrzynia().getNazwa());
-        gearboxPriceTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getCena()));
-        gearboxWeightTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getWaga()));
-        gearTextField.setText(String.valueOf(mojSamochod.getSkrzynia().getAktBieg()));
-
-        engineNameTextField.setText(mojSamochod.getSilnik().getNazwa());
-        enginePriceTextField.setText(String.valueOf(mojSamochod.getSilnik().getCena()));
-        engineWeightTextField.setText(String.valueOf(mojSamochod.getSilnik().getWaga()));
-        rpmTextField.setText(String.valueOf(mojSamochod.getSilnik().getObroty()));
-
-        clutchNameTextField.setText(mojSamochod.getSprzeglo().getNazwa());
-        clutchPriceTextField.setText(String.valueOf(mojSamochod.getSprzeglo().getCena()));
-        clutchWeightTextField.setText(String.valueOf(mojSamochod.getSprzeglo().getWaga()));
-        clutchTextField.setText(mojSamochod.getSprzeglo().isWcisniete() ? "Wciśnięte" : "Zwolnione");
     }
 
     public void dodajSamochod(Samochod nowySamochod) {
