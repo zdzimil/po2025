@@ -48,7 +48,6 @@ public class SamochodController  implements Listener {
         listaSamochodow.add(mojSamochod);
         carComboBox.setItems(listaSamochodow);
 
-        // Wyświetlanie modelu w liście, by nie wyskoczyły jakieś napisy gdzie jest zapisany ten obiekt
         carComboBox.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(Samochod item, boolean empty) {
@@ -90,6 +89,7 @@ public class SamochodController  implements Listener {
 
 
         Platform.runLater(() -> {
+            if (mojSamochod == null) return;
             carImageView.setTranslateX(mojSamochod.getAktPozycja().getX());
             carImageView.setTranslateY(mojSamochod.getAktPozycja().getY());
 

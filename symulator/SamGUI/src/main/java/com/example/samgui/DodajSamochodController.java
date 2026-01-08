@@ -19,13 +19,6 @@ public class DodajSamochodController {
     @FXML private Button confirmButton;
     @FXML private Button cancelButton;
 
-    @FXML
-    public void initialize() {
-        engineComboBox.getItems().addAll("V8 4.0", "V6 3.0", "R4 2.0");
-        gearboxComboBox.getItems().addAll("Manualna 6-biegowa", "Automatyczna");
-    }
-
-
     private SamochodController mainController;
 
     public void setMainController(SamochodController mainController) {
@@ -33,31 +26,71 @@ public class DodajSamochodController {
     }
 
     @FXML
+    public void initialize() {
+        engineComboBox.getItems().addAll("R4 2.0", "V6 3.0", "V8 4.0", "V12 Monster");
+        engineComboBox.getSelectionModel().selectFirst();
+
+        gearboxComboBox.getItems().addAll("Manualna 6-biegowa", "Automatyczna 8-biegowa", "Sportowa DSG");
+        gearboxComboBox.getSelectionModel().selectFirst();
+    }
+
+    @FXML
     private void onConfirmButton() {
         String model = modelTextField.getText();
         String registration = registrationTextField.getText();
-
-
+        String wybranySilnik = engineComboBox.getValue();
+        String wybranaSkrzynia = gearboxComboBox.getValue();
 
         try {
             double weight = Double.parseDouble(weightTextField.getText());
             int speed = Integer.parseInt(speedTextField.getText());
 
-            Sprzeglo s = new Sprzeglo("Standard", 5, 200, "Producent", "M1");
-            Silnik sil = new Silnik("R4", 150, 5000, "Producent", "S1", 6000);
-            SkrzyniaBiegow sk = new SkrzyniaBiegow("Manual", 30, 1000, "Producent", "B1", 5, s);
+            Sprzeglo sprzeglo = new Sprzeglo("Standard", 5, 200, "Producent", "M1");
+            Silnik silnik;
+            SkrzyniaBiegow skrzynia;
 
-            Samochod nowy = new Samochod(registration, model, speed, sil, sk, s, new Pozycja(0,0));
+            if (wybranySilnik == null) wybranySilnik = "R4 2.0";
 
-            // Używamy referencji do wywołania metody
+            switch (wybranySilnik) {
+                case "V12 Monster":
+                    silnik = new Silnik("V12", 500, 20000, "Ferrari", "F140", 9000);
+                    break;
+                case "V8 4.0":
+                    silnik = new Silnik("V8", 300, 10000, "BMW", "M5", 8000);
+                    break;
+                case "V6 3.0":
+                    silnik = new Silnik("V6", 220, 8000, "Audi", "V6T", 7000);
+                    break;
+                case "R4 2.0":
+                default:
+                    silnik = new Silnik("R4", 150, 5000, "Toyota", "S1", 6000);
+                    break;
+            }
+
+            if (wybranaSkrzynia == null) wybranaSkrzynia = "Manualna 6-biegowa";
+
+            switch (wybranaSkrzynia) {
+                case "Sportowa DSG":
+                    skrzynia = new SkrzyniaBiegow("DSG", 60, 3000, "VW", "DSG7", 7, sprzeglo);
+                    break;
+                case "Automatyczna 8-biegowa":
+                    skrzynia = new SkrzyniaBiegow("Automat", 50, 2500, "ZF", "8HP", 8, sprzeglo);
+                    break;
+                case "Manualna 6-biegowa":
+                default:
+                    skrzynia = new SkrzyniaBiegow("Manual", 30, 1000, "Getrag", "B1", 6, sprzeglo);
+                    break;
+            }
+
+            Samochod nowy = new Samochod(registration, model, speed, silnik, skrzynia, sprzeglo, new Pozycja(0, 0));
+
             if (mainController != null) {
                 mainController.dodajSamochod(nowy);
-            } else {
-                System.out.println("Błąd: Nie ustawiono głównego kontrolera!");
             }
 
             Stage stage = (Stage) confirmButton.getScene().getWindow();
             stage.close();
+
         } catch (NumberFormatException e) {
             pokazBlad("Niepoprawne dane! Waga i prędkość muszą być liczbami.");
         }
@@ -69,7 +102,6 @@ public class DodajSamochodController {
         stage.close();
     }
 
-
     private void pokazBlad(String wiadomosc) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Błąd");
@@ -77,5 +109,4 @@ public class DodajSamochodController {
         alert.setContentText(wiadomosc);
         alert.showAndWait();
     }
-
 }

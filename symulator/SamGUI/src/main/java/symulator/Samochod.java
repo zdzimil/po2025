@@ -62,8 +62,6 @@ public class Samochod extends Thread {
         return aktualnaPozycja;
     }
 
-
-    // Gettery potrzebne dla klasy Zawody
     public String getModel() {
         return model;
     }
